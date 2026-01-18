@@ -12,15 +12,18 @@
 
 # Структура проекта
 
-saucedemo_tests/
-├── pages/           	# Page Object (LoginPage, ProductsPage)
-├── tests/           	# 5 тестов авторизации
-├── utils/           	# Настройка драйвера Selenium
-├── Dockerfile       	# Конфигурация Docker
-├── docker-compose.yml	# Конфигурация многоконтейнерного приложения
-├── requirements.txt 	# Зависимости Python
-├── allure-results/  	# Результаты Allure (генерируются)
-└── run-tests.bat    	# Скрипт автоматического запуска (Windows)
+| Файл/Папка | Описание |
+|------------|----------|
+| `pages/` | Page Object модели (LoginPage, ProductsPage) |
+| `tests/` | 5 тестов авторизации |
+| `utils/` | Настройка Selenium драйвера |
+| `Dockerfile` | Конфигурация Docker образа |
+| `docker-compose.yml` | Конфигурация Docker Compose |
+| `requirements.txt` | Зависимости Python |
+| `run-tests.bat` | Скрипт автоматического запуска для Windows |
+| `pytest.ini` | Конфигурация pytest |
+| `allure-results/` | результаты тестов |
+| `allure-report/` | HTML отчёт |
 
 # Тестовые сценарии
 
@@ -30,7 +33,7 @@ saucedemo_tests/
 4. Логин с пустыми полями
 5. Логин пользователем performance_glitch_user (с задержками)
 
-# Инструкция клонирования репозитория с GitHub
+# Инструкция №1 клонирования репозитория с GitHub
 
 1.	Выполните следующую команду в cmd: 
 
@@ -40,11 +43,11 @@ saucedemo_tests/
 
 	https://github.com/Personalniy-Stimul/saucedemo_tests
 
-# Инструкция запуска контейнера Doker для OC Windows через cmd (после клонирования репозитория с GitHub)
+# Инструкция №2 запуска контейнера Doker для OC Windows через cmd (после клонирования репозитория с GitHub)
 
 1. 	Перейдите в корневую папку проекта
 
-	cd (путь...)/saucedemo_tests
+	cd (путь к корневой папке из репозитория...)/saucedemo_tests
 
 2.	Соберите образ
 
@@ -70,7 +73,7 @@ saucedemo_tests/
 
 	start /b python -m http.server 8000 && timeout /t 2 && start http://localhost:8000
 
-# Инструкция запуска для OC Windows локально (после клонирования репозитория с GitHub)
+# Инструкция №3 запуска для OC Windows локально (после клонирования репозитория с GitHub)
 
 Способ 1. Запустите "run-tests.bat" в корне проекта. Ожидаемый результат: автоматический прогон тестов, автооткрытие отчета Allure в браузере по умолчанию. 
 
