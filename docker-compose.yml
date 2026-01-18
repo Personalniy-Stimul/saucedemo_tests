@@ -29,6 +29,7 @@ services:
     container_name: allure-generator
     volumes:
       - ./allure-results:/allure-results
+      - ./allure-report:/allure-report
     # Генерируем в временную папку внутри контейнера
     command: sh -c "allure generate /allure-results -o /tmp/allure-report --clean && cp -r /tmp/allure-report/* /allure-results/ 2>/dev/null || true"
     depends_on:

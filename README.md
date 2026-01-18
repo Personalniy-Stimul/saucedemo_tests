@@ -34,7 +34,7 @@ saucedemo_tests/
 
 1.	Выполните следующую команду в cmd: 
 
-	git clone https://github.com/Personalniy-Stimul/saucedemo-tests.git
+	git clone https://github.com/Personalniy-Stimul/saucedemo_tests.git
 
 2. 	Либо скачайте через браузер ZIP-архив с проектом из репозитория по ссылке и распакуйте проект в удобное место на локальном пространстве: 
 
@@ -44,7 +44,7 @@ saucedemo_tests/
 
 1. 	Перейдите в корневую папку проекта
 
-	cd (путь...)/saucedemo-tests
+	cd (путь...)/saucedemo_tests
 
 2.	Соберите образ
 
@@ -53,6 +53,14 @@ saucedemo_tests/
 3.	Запустите тесты в контейнере
 
 	docker run --rm saucedemo-tests
+
+4.	Сформируйте отчеты Allure
+
+	docker-compose up report-generate
+
+5.	Перейдите в директорию Allure отчета и запустите сервер локально с последующим открытием в браузере по умолчанию страницы с отчетом
+	
+	cd allure-results && start /b python -m http.server 8000 && start http://localhost:8000
 
 # Инструкция запуска для OC Windows локально (после клонирования репозитория с GitHub)
 
