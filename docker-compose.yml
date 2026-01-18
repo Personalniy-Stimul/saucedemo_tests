@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  tests:
+    build: .
+    container_name: saucedemo-tests
+    environment:
+      - IN_DOCKER=true
+    volumes:
+      - ./allure-results:/app/allure-results
+    command: pytest --alluredir=allure-results -v
+  
+  # Старый сервис - работает
+  allure:
+    image: frankescobar/allure-docker-service
+    container_name: allure-server
+    ports:
+      - "5050:5050"
+    volumes:
+      - ./allure-results:/allure-results
+    command: allure serve /allure-results -p 5050
+    depends_on:
+      - tests
+  
+  # Упрощенный генератор отчета (только если нужен статический отчет)
+  # Запускать отдельно: docker-compose up report-generate
+  report-generate:
+    image: frankescobar/allure-docker-service
+    container_name: allure-generator
+    volumes:
+      - ./allure-results:/allure-results
+    # Генерируем в временную папку внутри контейнера
+    command: sh -c "allure generate /allure-results -o /tmp/allure-report --clean && cp -r /tmp/allure-report/* /allure-results/ 2>/dev/null || true"
+    depends_on:
+      - tests
+  
+  # Удаляем report-view - он не нужен, так как allure-server уже показывает отчет
