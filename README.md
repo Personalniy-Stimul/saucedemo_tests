@@ -40,7 +40,7 @@ saucedemo_tests/
 
 	https://github.com/Personalniy-Stimul/saucedemo_tests
 
-# Инструкция запуска контейнера Doker через cmd (после клонирования репозитория с GitHub)
+# Инструкция запуска контейнера Doker для OC Windows через cmd (после клонирования репозитория с GitHub)
 
 1. 	Перейдите в корневую папку проекта
 
@@ -52,7 +52,7 @@ saucedemo_tests/
 
 3.	Запустите тесты в контейнере
 
-	docker run --rm saucedemo-tests
+	docker run --rm -v "%cd%\allure-results:/app/allure-results" saucedemo-tests
 
 4.	Сформируйте отчеты Allure
 
@@ -62,7 +62,11 @@ saucedemo_tests/
 	
 	cd allure-report 
 
-6.	Запустите сервер локально с последующим открытием в браузере по умолчанию страницы с отчетом
+6.	Очистите старые серверы (ранее запущенные)
+	
+	taskkill /F /IM python.exe 2>nul	
+
+7.	Запустите сервер локально с последующим открытием в браузере по умолчанию страницы с отчетом
 
 	start /b python -m http.server 8000 && timeout /t 2 && start http://localhost:8000
 
