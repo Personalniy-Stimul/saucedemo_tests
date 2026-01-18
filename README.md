@@ -58,9 +58,13 @@ saucedemo_tests/
 
 	docker-compose up report-generate
 
-5.	Перейдите в директорию Allure отчета и запустите сервер локально с последующим открытием в браузере по умолчанию страницы с отчетом
+5.	Перейдите в директорию Allure отчета
 	
-	cd allure-results && start /b python -m http.server 8000 && start http://localhost:8000
+	cd allure-report 
+
+6.	Запустите сервер локально с последующим открытием в браузере по умолчанию страницы с отчетом
+
+	start /b python -m http.server 8000 && timeout /t 2 && start http://localhost:8000
 
 # Инструкция запуска для OC Windows локально (после клонирования репозитория с GitHub)
 
