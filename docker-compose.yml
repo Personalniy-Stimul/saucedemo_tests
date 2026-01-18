@@ -22,17 +22,15 @@ services:
     depends_on:
       - tests
   
-  # Упрощенный генератор отчета (только если нужен статический отчет)
+
   # Запускать отдельно: docker-compose up report-generate
   report-generate:
     image: frankescobar/allure-docker-service
     container_name: allure-generator
     volumes:
       - ./allure-results:/allure-results
-      - ./allure-report:/allure-report
-    # Генерируем в временную папку внутри контейнера
-    command: sh -c "allure generate /allure-results -o /tmp/allure-report --clean && cp -r /tmp/allure-report/* /allure-results/ 2>/dev/null || true"
+      - ./allure-report:/allure-report  # ← маунтим
+    command: allure generate /allure-results -o /allure-report --clean
     depends_on:
       - tests
-  
-  # Удаляем report-view - он не нужен, так как allure-server уже показывает отчет
+
